@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f6f0">
+<meta name="description" content="Anurag Bowrassi — student developer exploring Python, web development, and Minecraft server development.">
+<meta name="author" content="Anurag Bowrassi">
+<title>Anurag Bowrassi — Digital Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #faf9f5;
+  --paper: #fffefa;
+  --ink: #24241f;
+  --muted: #77766d;
+  --gold: #b99a5e;
+  --gold-light: #ead9ad;
+  --line: rgba(118, 100, 63, .15);
+  --glass: rgba(255, 255, 255, .57);
+  --shadow: 0 20px 70px rgba(85, 70, 40, .08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 8% 8%, rgba(239,218,172,.36), transparent 36%),
+    radial-gradient(ellipse at 93% 24%, rgba(226,220,201,.52), transparent 34%),
+    radial-gradient(ellipse at 48% 85%, rgba(255,255,255,.9), transparent 48%);
+}
+
+a { color: inherit; text-decoration: none; }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+::selection { background: #e8d5a7; color: #282319; }
+
+.wrap {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+/* Ambient background */
+
+.ambient {
+  position: fixed;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  filter: blur(95px);
+  opacity: .3;
+  pointer-events: none;
+  z-index: -1;
+  animation: ambient 16s ease-in-out infinite alternate;
+}
+
+.ambient.one {
+  background: #e8d5a8;
+  top: 5%;
+  left: -180px;
+}
+
+.ambient.two {
+  background: #e5e1d5;
+  right: -200px;
+  top: 40%;
+  animation-delay: -6s;
+}
+
+@keyframes ambient {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to { transform: translate3d(45px,35px,0) scale(1.15); }
+}
+
+/* Navigation */
+
+header {
+  position: fixed;
+  top: 16px;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 15px 11px 22px;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 22px;
+  background: rgba(255,254,250,.68);
+  backdrop-filter: blur(26px) saturate(160%);
+  -webkit-backdrop-filter: blur(26px) saturate(160%);
+  box-shadow: 0 8px 35px rgba(73,60,37,.07);
+}
+
+.brand {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -1px;
+}
+
+.brand span { color: var(--gold); }
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.links a { transition: color .25s ease; }
+.links a:hover { color: var(--gold); }
+
+.nav-cta {
+  padding: 9px 16px;
+  border-radius: 13px;
+  background: var(--ink);
+  color: white !important;
+  transition: transform .25s, background .25s;
+}
+
+.nav-cta:hover {
+  background: #8d7547;
+  transform: translateY(-2px);
+}
+
+/* Hero */
+
+.hero {
+  min-height: 94svh;
+  padding-top: 150px;
+  padding-bottom: 95px;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #8c7548;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #b49a60;
+  box-shadow: 0 0 0 5px rgba(180,154,96,.13);
+}
+
+h1, h2, h3 {
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+h1 {
+  font-size: clamp(3.5rem, 7.4vw, 6.6rem);
+  font-weight: 600;
+  margin: 28px 0 22px;
+  letter-spacing: -5px;
+}
+
+.gold-text {
+  color: #ad8c4c;
+  background: linear-gradient(115deg, #876b36, #c8a765 48%, #98743a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-copy {
+  max-width: 525px;
+  color: var(--muted);
+  font-size: 1.04rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 19px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  font-size: .88rem;
+  font-weight: 700;
+  transition: transform .3s, box-shadow .3s, background .3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(76,60,31,.12);
+}
+
+.btn-dark {
+  background: #272720;
+  color: #fff;
+  border-color: #272720;
+}
+
+.btn-light {
+  background: rgba(255,255,255,.55);
+  backdrop-filter: blur(10px);
+}
+
+/* Liquid glass sculpture */
+
+.visual {
+  position: relative;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  perspective: 1000px;
+}
+
+.orb {
+  width: min(330px, 76vw);
+  aspect-ratio: 1;
+  border-radius: 46% 54% 62% 38% / 45% 43% 57% 55%;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 28% 22%, #fff 0%, rgba(255,255,255,.88) 8%, transparent 33%),
+    radial-gradient(ellipse at 70% 75%, rgba(183,151,88,.65), transparent 38%),
+    linear-gradient(135deg, rgba(255,255,255,.94), rgba(238,222,187,.78) 42%, rgba(255,255,255,.75) 68%, rgba(199,176,127,.48));
+  border: 1px solid rgba(255,255,255,.92);
+  box-shadow:
+    inset -18px -20px 45px rgba(151,120,58,.12),
+    inset 13px 12px 38px rgba(255,255,255,.95),
+    0 35px 90px rgba(152,124,69,.18);
+  animation: morph 10s ease-in-out infinite, float 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.orb::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.8);
+  box-shadow: inset 0 0 35px rgba(255,255,255,.55);
+  transform: rotate(-25deg) scaleX(.84);
+}
+
+.orb::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 17%;
+  top: 16%;
+  left: 17%;
+  border-radius: 50%;
+  background: rgba(255,255,255,.75);
+  filter: blur(17px);
+  transform: rotate(-35deg);
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 46% 54% 62% 38% / 45% 43% 57% 55%; }
+  50% { border-radius: 57% 43% 42% 58% / 56% 58% 42% 44%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-17px) rotate(2deg); }
+}
+
+.orbit {
+  position: absolute;
+  width: 410px;
+  max-width: 100%;
+  height: 160px;
+  border: 1px solid rgba(175,145,85,.35);
+  border-radius: 50%;
+  transform: rotate(-29deg);
+}
+
+.orbit.two {
+  width: 370px;
+  height: 125px;
+  transform: rotate(43deg);
+  border-color: rgba(255,255,255,.9);
+}
+
+.floating-card {
+  position: absolute;
+  right: 0;
+  bottom: 55px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 18px;
+  background: rgba(255,254,250,.66);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+  font-size: .8rem;
+  animation: float 7s ease-in-out infinite reverse;
+}
+
+.floating-card strong {
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+}
+
+.floating-card span { color: var(--muted); }
+
+/* Sections */
+
+section.content-section { padding: 85px 0; }
+
+.section-head { max-width: 680px; }
+
+.section-head h2 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  margin: 14px 0 18px;
+  font-weight: 600;
+}
+
+.section-head > p:last-child {
+  color: var(--muted);
+  max-width: 590px;
+}
+
+.about-panel {
+  margin-top: 30px;
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(255,255,255,.73), rgba(255,255,255,.35));
+  backdrop-filter: blur(22px);
+  box-shadow: var(--shadow);
+}
+
+.about-panel p { color: var(--muted); }
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.skill {
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,.65);
+  font-size: .78rem;
+  color: #6d6047;
+}
+
+/* Projects */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.project {
+  min-height: 290px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.92);
+  background: rgba(255,255,255,.52);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(74,61,37,.045);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s, border-color .4s;
+}
+
+.project::before {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  right: -85px;
+  top: -85px;
+  border-radius: 50%;
+  background: rgba(223,203,157,.26);
+  filter: blur(5px);
+  transition: transform .5s;
+}
+
+.project:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 65px rgba(91,71,35,.12);
+  border-color: rgba(190,158,94,.42);
+}
+
+.project:hover::before { transform: scale(1.6); }
+
+.project-icon {
+  display: grid;
+  place-items: center;
+  width: 49px;
+  height: 49px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fff, #f0e5cd);
+  color: #947541;
+  font-size: 1.2rem;
+  margin-bottom: 27px;
+  box-shadow: 0 8px 22px rgba(123,97,49,.09);
+}
+
+.project h3 {
+  font-size: 1.2rem;
+  letter-spacing: -.5px;
+  margin-bottom: 12px;
+}
+
+.project p {
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.8;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 20px;
+}
+
+.tags span {
+  background: rgba(230,217,188,.4);
+  border: 1px solid rgba(181,152,95,.12);
+  color: #806b43;
+  border-radius: 7px;
+  padding: 4px 8px;
+  font-size: .7rem;
+}
+
+/* Contact */
+
+.contact {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 6vw, 65px);
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,.92);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(225,204,158,.4), transparent 46%),
+    linear-gradient(135deg, rgba(255,255,255,.83), rgba(255,255,255,.43));
+  backdrop-filter: blur(24px);
+  box-shadow: var(--shadow);
+}
+
+.contact h2 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  max-width: 650px;
+  margin: 18px 0;
+}
+
+.contact p { color: var(--muted); }
+
+/* Footer */
+
+footer {
+  padding: 32px 0;
+  margin-top: 55px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-inner a { color: var(--ink); }
+.footer-inner a:hover { color: var(--gold); }
+
+/* Reveal transitions */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding-top: 150px;
+    padding-bottom: 35px;
+  }
+
+  .hero-copy { max-width: 620px; }
+  .visual { min-height: 350px; }
+  .orb { width: 260px; }
+  .orbit { width: 340px; height: 130px; }
+  .orbit.two { width: 310px; height: 105px; }
+  .floating-card { right: 5%; bottom: 25px; }
+  .project-grid { grid-template-columns: 1fr 1fr; }
+  section.content-section { padding: 65px 0; }
+}
+
+@media (max-width: 520px) {
+  .wrap { width: calc(100% - 30px); }
+  header { top: 10px; }
+  .nav { padding: 10px 11px 10px 15px; border-radius: 17px; }
+  .brand { font-size: 1rem; }
+  .links { gap: 13px; font-size: .75rem; }
+  .links .nav-cta { padding: 8px 10px; }
+  .hero { padding-top: 130px; }
+  h1 { font-size: clamp(3.25rem, 15vw, 4.7rem); letter-spacing: -3.5px; }
+  .hero-copy { font-size: .95rem; }
+  .visual { min-height: 315px; }
+  .orb { width: 225px; }
+  .orbit { width: 290px; height: 100px; }
+  .orbit.two { width: 275px; height: 90px; }
+  .floating-card { bottom: 8px; right: 0; }
+  .project-grid { grid-template-columns: 1fr; }
+  .project { min-height: auto; }
+  .about-panel { padding: 23px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+
+<body>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+
+<header>
+  <nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="#home">ANURAG<span>.</span></a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#projects">Work</a>
+      <a class="nav-cta" href="#contact">Let's talk ↗</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap" id="home">
+    <div class="hero-content">
+      <p class="eyebrow"><span class="dot"></span> Student · Aspiring Developer</p>
+      <h1>Hey, I'm<br><span class="gold-text">Anurag.</span><br>I build things.</h1>
+      <p class="hero-copy">
+        Exploring the intersection of code, creativity, and technology.
+        I turn ideas into real projects, learn by building, and keep getting better with every experiment.
+      </p>
+      <div class="actions">
+        <a class="btn btn-dark" href="#projects">Explore my work <span>↗</span></a>
+        <a class="btn btn-light" href="https://github.com/fireboy-codes" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="visual" aria-label="Abstract champagne-gold liquid glass artwork">
+      <div class="orbit"></div>
+      <div class="orbit two"></div>
+      <div class="orb"></div>
+      <div class="floating-card">
+        <strong>Curiosity → Creation</strong>
+        <span>Always learning something new</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section wrap reveal" id="about">
+    <div class="section-head">
+      <p class="eyebrow">01 — A little about me</p>
+      <h2>Curious by nature.<br><span class="gold-text">Building by choice.</span></h2>
+      <p>
+        I'm a student developing my skills one project at a time.
+        From Python experiments to websites and Minecraft server development,
+        I enjoy understanding how technology works behind the scenes.
+      </p>
+    </div>
+
+    <div class="about-panel">
+      <p>
+        My approach is simple: start with an idea, build a first version,
+        figure out what breaks, and make it better. This portfolio is a home
+        for the things I'm learning and creating along the way.
+      </p>
+      <div class="skills">
+        <span class="skill">Python</span>
+        <span class="skill">HTML & CSS</span>
+        <span class="skill">Flask</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">Minecraft Plugins</span>
+        <span class="skill">Creative Technology</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section wrap reveal" id="projects">
+    <div class="section-head">
+      <p class="eyebrow">02 — Selected work</p>
+      <h2>Made with curiosity.<br><span class="gold-text">Built to learn.</span></h2>
+      <p>A few projects and areas I'm exploring as I grow as a developer.</p>
+    </div>
+
+    <div class="project-grid">
+      <article class="project">
+        <div class="project-icon">✳</div>
+        <h3>School Education Portal</h3>
+        <p>A Flask-based school portal concept for organizing lessons, subjects, homework, and class information.</p>
+        <div class="tags">
+          <span>Python</span><span>Flask</span><span>SQLite</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">◇</div>
+        <h3>Minecraft Projects</h3>
+        <p>Exploring server management, practice systems, custom plugins, and tools for gaming communities.</p>
+        <div class="tags">
+          <span>Java</span><span>Plugins</span><span>Server Tools</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">⌘</div>
+        <h3>Personal Portfolio</h3>
+        <p>A responsive personal website designed to showcase my interests, development journey, and experiments.</p>
+        <div class="tags">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="content-section wrap reveal" id="contact">
+    <div class="contact">
+      <p class="eyebrow">03 — Let's connect</p>
+      <h2>Have an idea?<br><span class="gold-text">Let's build it.</span></h2>
+      <p>Check out my public coding projects and experiments on GitHub.</p>
+      <div class="actions">
+        <a class="btn btn-dark" href="https://github.com/fireboy-codes" target="_blank" rel="noopener noreferrer">Visit my GitHub ↗</a>
+        <a class="btn btn-light" href="#home">Back to top ↑</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year">2026</span> Anurag Bowrassi · Crafted with curiosity.</span>
+    <a href="https://github.com/fireboy-codes" target="_blank" rel="noopener noreferrer">github.com/fireboy-codes ↗</a>
+  </div>
+</footer>
+
+<script>
+  // Keep the copyright year current.
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Reveal sections as they enter the viewport.
+  const revealItems = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(item => observer.observe(item));
+  } else {
+    revealItems.forEach(item => item.classList.add("visible"));
+  }
+</script>
+</body>
+</html>
